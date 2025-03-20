@@ -6,7 +6,6 @@ class Status(Enum):
     PAUSED = 3
 
 class TimerStatusManager:
-    status: Status
     def __init__(self):
         self.status = Status.REST
 
@@ -15,5 +14,5 @@ class TimerStatusManager:
 
     def get_status(self) -> Status:
         return self.status
-    
-    
+
+

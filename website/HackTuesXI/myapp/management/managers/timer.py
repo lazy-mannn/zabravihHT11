@@ -1,47 +1,40 @@
 import time
 
 class TimerManager:
-    workingSecCount = 1500
-    restSecCount = 300
-    snoozeSecCount = 300
-    isSnoozed = False
-    currentWorkingSecCount = 0
-    currentRestSecCount = 0
-    currentSnoozeSecCount = 0
-
+    def __init__(self):
+        self.workingSecCount = 1500
+        self.restSecCount = 300
+        self.snoozeSecCount = 300
+        self.isSnoozed = False
+        self.currentWorkingSecCount = self.workingSecCount
+        self.currentRestSecCount = self.restSecCount
+        self.currentSnoozeSecCount = self.snoozeSecCount
 
     def restCountdown(self):
-        currentRestSecCount = self.restSecCount
-        while currentRestSecCount:
+        while self.currentRestSecCount > 0:
             time.sleep(1)
-            currentRestSecCount -= 1
+            self.currentRestSecCount -= 1
 
     def snoozeCountdown(self):
-        currentSnoozeSecCount = self.snoozeSecCount
-        while currentSnoozeSecCount:
+        self.currentSnoozeSecCount = self.snoozeSecCount
+        while self.currentSnoozeSecCount > 0:
             time.sleep(1)
-            currentSnoozeSecCount -= 1
-    
+            self.currentSnoozeSecCount -= 1
 
     def workingCountdown(self):
-        currentWorkingSecCount = self.workingSecCount
-        while currentWorkingSecCount:
-            if isSnoozed:
+        self.currentWorkingSecCount = self.workingSecCount
+        while self.currentWorkingSecCount > 0:
+            if self.isSnoozed:
                 self.snoozeCountdown()
-                isSnoozed = False
+                self.isSnoozed = False
             time.sleep(1)
-            currentWorkingSecCount -= 1
+            self.currentWorkingSecCount -= 1
 
     def snooze(self):
-        isSnoozed = True
+        self.isSnoozed = True
 
     def getWorkingSecCount(self):
         return self.currentWorkingSecCount
     
     def getRestSecCount(self):
         return self.currentRestSecCount
-
-
-
-    
-    
