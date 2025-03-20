@@ -5,11 +5,19 @@
 #include <WiFi.h>
 #include <WiFiClientSecure.h>
 #include <PubSubClient.h>
-#include <sram.h>
 #include <SPI.h>
+#include <NTPClient.h>
+#include <WiFiUdp.h>
 
+// MQTT Broker Configuration
+const char *mqtt_broker = "e4995ca1.ala.eu-central-1.emqxsl.com";  
+const char *mqtt_topic = "status";     
+const char *mqtt_username = "esp32";  
+const char *mqtt_password = "esp32";  
+const int mqtt_port = 8883;  
 
-const char* mqtt_cert = \
+// Replace with your own certificate (as string)
+const char* ca_cert = \
 "-----BEGIN CERTIFICATE----- \n" \
 "MIIDrzCCApegAwIBAgIQCDvgVpBCRrGhdWrJWZHHSjANBgkqhkiG9w0BAQUFADBh\n" \ 
 "MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3\n" \
@@ -33,31 +41,21 @@ const char* mqtt_cert = \
 "CAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=\n" \
 "-----END CERTIFICATE-----\n";
 
-// MQTT Broker settings
-const char* mqtt_server = "e4995ca1.ala.eu-central-1.emqxsl.com"; 
-const int mqtt_port = 8883;
-const char* publish_topic = "status";
-
-// WiFi settings
+// Wi-Fi settings
 const char* ssid = "Zabravih";  
 const char* password = "Alex2009";
 
-// MQTT Username and Password
-const char* mqtt_user = "esp32-u";    // Replace with your MQTT username
-const char* mqtt_pass = "esp32-pass";    // Replace with your MQTT password
-
-
+// NTP Server
+const long utcOffsetInSeconds = 3600;  // Set your UTC offset (e.g., 3600 for UTC+1)
+const char* ntpServer = "pool.ntp.org";  // NTP server (use the default pool or specify your own)
+WiFiUDP udp;
+NTPClient timeClient(udp, ntpServer, utcOffsetInSeconds);
 
 // Wi-Fi client for MQTT connection
 WiFiClientSecure espClient;
-PubSubClient client(espClient);
+PubSubClient mqtt_client(espClient);
 
-// Declare SRAM object (adjust parameters for your SRAM module)
-SRAM ram(14);  // Chip select pin = D14
-uint16_t addr = 0;
-uint8_t value = 0x0A;
-uint8_t res = 0;
-
+// Wi-Fi connection setup
 void setup_wifi() {
   Serial.print("Connecting to Wi-Fi...");
   WiFi.begin(ssid, password);
@@ -70,34 +68,56 @@ void setup_wifi() {
   Serial.println("\nConnected to Wi-Fi!");
   Serial.print("IP Address: ");
   Serial.println(WiFi.localIP());
+
+  // Check DNS resolution for NTP server
+  Serial.print("Resolving DNS for NTP server: ");
+  IPAddress ntpIP;
+  if (WiFi.hostByName(ntpServer, ntpIP)) {
+    Serial.print("Resolved IP: ");
+    Serial.println(ntpIP);
+  } else {
+    Serial.println("DNS resolution failed for NTP server");
+  }
+
+  // Check DNS resolution for MQTT broker
+  Serial.print("Resolving DNS for MQTT broker: ");
+  IPAddress mqttBrokerIP;
+  if (WiFi.hostByName(mqtt_broker, mqttBrokerIP)) {
+    Serial.print("Resolved IP: ");
+    Serial.println(mqttBrokerIP);
+  } else {
+    Serial.println("DNS resolution failed for MQTT broker");
+  }
 }
 
-void callback(char* topic, byte* payload, unsigned int length) {
-  Serial.print("Message received: ");
+// MQTT connection setup with SSL/TLS
+void connectToMQTT() {
+  String client_id = "esp32-client-" + String(WiFi.macAddress());
+  Serial.printf("Connecting to MQTT Broker as %s...\n", client_id.c_str());
+
+  if (mqtt_client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
+      Serial.println("Connected to MQTT broker!");
+      mqtt_client.subscribe(mqtt_topic);
+      mqtt_client.publish(mqtt_topic, "How is it??");
+  } else {
+      Serial.print("Failed to connect, MQTT error code: ");
+      Serial.println(mqtt_client.state());  // Shows the connection failure reason
+      delay(5000);  // Retry after 5 seconds
+  }
+}
+
+// MQTT message callback
+void mqttCallback(char *topic, byte *payload, unsigned int length) {
+  Serial.print("Message received on topic: ");
+  Serial.println(topic);
+  Serial.print("Message:");
   for (unsigned int i = 0; i < length; i++) {
-      Serial.print((char)payload[i]);
+      Serial.print((char) payload[i]);
   }
   Serial.println();
+  Serial.println("-----------------------");
 }
 
-void reconnect() {
-  while (!client.connected()) {
-      Serial.print("Attempting MQTT connection...");
-
-      // Attempt to connect with a client ID
-      if (client.connect("ESP32Client")) {
-          Serial.println("connected");
-          client.subscribe("sensor/acceleration");  // Subscribe to a topic (optional)
-      } else {
-          Serial.print("failed, rc=");
-          Serial.print(client.state());
-          Serial.println(" retrying in 5 seconds...");
-          delay(5000);
-      }
-  }
-}
-
-// Assign a unique ID
 Adafruit_LSM303_Accel_Unified accel = Adafruit_LSM303_Accel_Unified(54321);
 
 void displaySensorDetails() {
@@ -107,67 +127,61 @@ void displaySensorDetails() {
     Serial.print("Sensor:       "); Serial.println(sensor.name);
     Serial.print("Driver Ver:   "); Serial.println(sensor.version);
     Serial.print("Unique ID:    "); Serial.println(sensor.sensor_id);
-    Serial.print("Max Value:    "); Serial.print(sensor.max_value); Serial.println(" m/s^2");
-    Serial.print("Min Value:    "); Serial.print(sensor.min_value); Serial.println(" m/s^2");
-    Serial.print("Resolution:   "); Serial.print(sensor.resolution); Serial.println(" m/s^2");
-    Serial.println("------------------------------------\n");
-    delay(500);
+    Serial.print("Max Value:    "); Serial.println(sensor.max_value);
+    Serial.print("Min Value:    "); Serial.println(sensor.min_value);
+    Serial.print("Resolution:   "); Serial.println(sensor.resolution);
+    Serial.println("------------------------------------");
 }
 
 void setup() {
-    Serial.begin(115200);
-    WiFi.begin(ssid, password);
-    Wire.begin(27, 26);  // SDA = GPIO 21, SCL = GPIO 22
-    setup_wifi();
-   
-    Serial.println("Accelerometer Test\n");
+  Serial.begin(115200);
+  Wire.begin(27, 26);  // SDA = GPIO 27, SCL = GPIO 26
+  setup_wifi();
+  timeClient.begin();
 
-    // Initialize the sensor
-    if (!accel.begin()) {
-        Serial.println("Ooops, no LSM303 detected... Check your wiring!");
-        while (1);
-    }
-
-    displaySensorDetails();
-
-    espClient.setCertificate(mqtt_cert);
-
-    // Set the MQTT server and callback
-    client.setServer(mqtt_server, mqtt_port);
-    client.setCallback(callback);
-
-
-     // Initialize SRAM if needed (example for external SRAM storage)
-     ram.begin();
-     ram.writeByte(addr, value);  // Write initial value to SRAM
-
-     reconnect();
+  // Initialize Accelerometer
+  if (!accel.begin()) {
+      Serial.println("Could not find a valid LSM303 sensor, check wiring!");
+      while (1);
   }
+  displaySensorDetails();
+  
+  // Set SSL/TLS Certificate
+  espClient.setCACert(ca_cert);
+  
+  mqtt_client.setServer(mqtt_broker, mqtt_port);
+  mqtt_client.setCallback(mqttCallback);
+}
 
 void loop() {
-    sensors_event_t event;
-    accel.getEvent(&event);
+  // Synchronize time with NTP
+  timeClient.update();
 
-    if (!client.connected()) {
-      reconnect();
-    }
-    client.loop();
+  // Check if MQTT is connected, and reconnect if needed
+  if (!mqtt_client.connected()) {
+      connectToMQTT();
+  }
+  mqtt_client.loop();
 
-    client.publish(publish_topic, "test");
+  // Get Accelerometer data
+  sensors_event_t event;
+  accel.getEvent(&event);
 
+  // Get the X, Y, and Z acceleration values
+  float x = event.acceleration.x;
+  float y = event.acceleration.y;
+  float z = event.acceleration.z;
 
-     // Store sensor data in SRAM
-     ram.writeByte(addr++, event.acceleration.x);  // Example write to SRAM (adjust logic)
+  // Create a message to publish with X, Y, and Z values
+  String message = "X: " + String(x) + " Y: " + String(y) + " Z: " + String(z);
 
-    // Print acceleration data
-    //Serial.print("X: "); Serial.print(event.acceleration.x); Serial.print("  ");
-    //Serial.print("Y: "); Serial.print(event.acceleration.y); Serial.print("  ");
-    //Serial.print("Z: "); Serial.print(event.acceleration.z); Serial.println(" m/s^2");
+  // Publish the message to the MQTT broker
+  mqtt_client.publish(mqtt_topic, message.c_str());
 
-      // Read and print value from SRAM (for example, print last written value)
-    res = ram.readByte(addr - 1);  // Read previous value from SRAM
-    //Serial.print("Last value from SRAM: ");
-    //Serial.println(res, HEX);
+  // Output to serial for debugging
+  Serial.print("X: "); Serial.print(x);
+  Serial.print(" Y: "); Serial.print(y);
+  Serial.print(" Z: "); Serial.println(z);
 
-    delay(500);
+  delay(1000);  // Delay 1 second before publishing again
 }

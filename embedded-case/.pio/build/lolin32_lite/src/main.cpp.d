@@ -237,6 +237,7 @@
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/aes_types.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/error.h \
  .pio/libdeps/lolin32_lite/PubSubClient/src/PubSubClient.h \
- .pio/libdeps/lolin32_lite/SRAM/sram.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src/SPI.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
+ .pio/libdeps/lolin32_lite/NTPClient/NTPClient.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiUdp.h

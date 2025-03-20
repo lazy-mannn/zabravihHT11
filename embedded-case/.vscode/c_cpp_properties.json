@@ -10,7 +10,9 @@
             "includePath": [
                 "/home/alex/Documents/programing/zabravihHT11/embedded-case/include",
                 "/home/alex/Documents/programing/zabravihHT11/embedded-case/src",
+                "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                 "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
+                "/home/alex/Documents/programing/zabravihHT11/embedded-case/.pio/libdeps/lolin32_lite/NTPClient",
                 "/home/alex/Documents/programing/zabravihHT11/embedded-case/.pio/libdeps/lolin32_lite/SRAM",
                 "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                 "/home/alex/Documents/programing/zabravihHT11/embedded-case/.pio/libdeps/lolin32_lite/PubSubClient/src",
@@ -241,7 +243,6 @@
                 "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/USB/src",
                 "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
                 "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
-                "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                 "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
                 ""
             ],
@@ -250,7 +251,9 @@
                 "path": [
                     "/home/alex/Documents/programing/zabravihHT11/embedded-case/include",
                     "/home/alex/Documents/programing/zabravihHT11/embedded-case/src",
+                    "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                     "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src",
+                    "/home/alex/Documents/programing/zabravihHT11/embedded-case/.pio/libdeps/lolin32_lite/NTPClient",
                     "/home/alex/Documents/programing/zabravihHT11/embedded-case/.pio/libdeps/lolin32_lite/SRAM",
                     "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src",
                     "/home/alex/Documents/programing/zabravihHT11/embedded-case/.pio/libdeps/lolin32_lite/PubSubClient/src",
@@ -481,7 +484,6 @@
                     "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/USB/src",
                     "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/Update/src",
                     "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src",
-                    "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src",
                     "/home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src",
                     ""
                 ]
