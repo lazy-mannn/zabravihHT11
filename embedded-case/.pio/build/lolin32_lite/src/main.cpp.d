@@ -1,26 +1,6 @@
 .pio/build/lolin32_lite/src/main.cpp.o: src/main.cpp \
- /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src/Wire.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_system.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_err.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_compiler.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_attr.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_bit_defs.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_idf_version.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_mac.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_chip_info.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_random.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_sleep.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/touch_sensor_types.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_assert.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc_caps.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/gpio_types.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/gpio_periph.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/io_mux_reg.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_struct.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_reg.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_sig_map.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/FreeRTOS.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos/FreeRTOSConfig.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_compiler.h \
@@ -53,16 +33,28 @@
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/soc/cpu.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_cpu.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/cpu_hal.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_err.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_compiler.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc_caps.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/cpu_types.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/esp32/include/hal/cpu_ll.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_attr.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/xtensa/esp32/include/xtensa/config/extreg.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_bit_defs.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/soc/compare_set.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/soc_memory_types.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/soc.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_assert.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_private/crosscore_int.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_timer/include/esp_timer.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include/esp_newlib.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/heap/include/esp_heap_caps.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/heap/include/multi_heap.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_system.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_common/include/esp_idf_version.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_mac.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_chip_info.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_random.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/port/xtensa/include/freertos/portbenchmark.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/xtensa/include/xtensa/xtensa_api.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/xtensa/include/xtensa/xtensa_context.h \
@@ -71,9 +63,18 @@
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/task.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/list.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/esp_additions/freertos/task_snapshot.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/semphr.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/queue.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/task.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/semphr.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_sleep.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/touch_sensor_types.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/gpio_types.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/gpio_periph.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/io_mux_reg.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_struct.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_reg.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_sig_map.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/queue.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/event_groups.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/timers.h \
@@ -81,7 +82,6 @@
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/log/include/esp_log.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/log/include/esp_log_internal.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-matrix.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-uart.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/uart_types.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-gpio.h \
@@ -103,25 +103,22 @@
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-psram.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-rgb-led.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-cpu.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Stream.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/pgmspace.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Printable.h \
- .pio/libdeps/lolin32_lite/Adafruit\ Unified\ Sensor/Adafruit_Sensor.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp8266-compat.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/stdlib_noniso.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/binary.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/WCharacter.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/pgmspace.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Stream.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Printable.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPAddress.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Printable.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Client.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Server.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Udp.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Stream.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPAddress.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/HWCDC.h \
@@ -136,6 +133,9 @@
  /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/soc/esp32/spiram.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src/Wire.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
+ .pio/libdeps/lolin32_lite/Adafruit\ Unified\ Sensor/Adafruit_Sensor.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
  .pio/libdeps/lolin32_lite/Adafruit\ LSM303DLHC/Adafruit_LSM303_U.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFi.h \
@@ -196,4 +196,47 @@
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Server.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiUdp.h \
  /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/Udp.h \
- /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/cbuf.h
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/cbuf.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src/WiFiClientSecure.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src/ssl_client.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/platform.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/mbedtls/esp_config.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/config.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/check_config.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/esp_mem.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/platform_time.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/net.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/net_sockets.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ssl.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/mbedtls/bignum.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/bignum.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ecp.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ssl_ciphersuites.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/pk.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/md.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/platform_util.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/rsa.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ecdsa.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/cipher.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/x509_crt.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/x509.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/asn1.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/x509_crl.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/dhm.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ecdh.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/debug.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/entropy.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/sha512_alt.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/sha_types.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_rom/include/esp32/rom/sha.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ctr_drbg.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/aes.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/aes_alt.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/aes/esp_aes.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/aes_types.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/error.h \
+ .pio/libdeps/lolin32_lite/PubSubClient/src/PubSubClient.h \
+ .pio/libdeps/lolin32_lite/SRAM/sram.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src/SPI.h \
+ /home/alex/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h
