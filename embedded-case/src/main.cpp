@@ -9,11 +9,13 @@
 #include <NTPClient.h>
 #include <WiFiUdp.h>
 
+
 // MQTT Broker Configuration
 const char *mqtt_broker = "e4995ca1.ala.eu-central-1.emqxsl.com";  
 const char *mqtt_topic = "status";     
-const char *mqtt_username = "esp32";  
-const char *mqtt_password = "esp32";  
+const char *mqtt_username = "iot-case-1";  
+const char *mqtt_password = "iot-case-1";  
+
 const int mqtt_port = 8883;  
 
 // Replace with your own certificate (as string)
@@ -98,7 +100,8 @@ void connectToMQTT() {
   if (mqtt_client.connect(client_id.c_str(), mqtt_username, mqtt_password)) {
       Serial.println("Connected to MQTT broker!");
       mqtt_client.subscribe(mqtt_topic);
-      mqtt_client.publish(mqtt_topic, "How is it??");
+      mqtt_client.publish(mqtt_topic, "Connected");
+
   } else {
       Serial.print("Failed to connect, MQTT error code: ");
       Serial.println(mqtt_client.state());  // Shows the connection failure reason
@@ -133,6 +136,25 @@ void displaySensorDetails() {
     Serial.println("------------------------------------");
 }
 
+
+int status(int check) {
+  sensors_event_t event;
+  accel.getEvent(&event);
+
+  int x = event.acceleration.x;
+  int y = event.acceleration.y;
+
+  // Serial.print("\nX: "); Serial.print(x);
+  // Serial.print(" Y: "); Serial.print(y);
+
+  if ((x>-3 && x<3 && y>-3 && y<3) || (x>-3 && x<3 && (y>8 || y<-8)) || ((x>8 || x<-8) && y>-3 && y<3))
+    check = 0;      //no movement
+  else
+    check = 1;      //movement
+  
+  return check;
+}
+
 void setup() {
   Serial.begin(115200);
   Wire.begin(27, 26);  // SDA = GPIO 27, SCL = GPIO 26
@@ -151,37 +173,40 @@ void setup() {
   
   mqtt_client.setServer(mqtt_broker, mqtt_port);
   mqtt_client.setCallback(mqttCallback);
+
+  // Synchronize time with NTP
+  timeClient.update();
 }
 
 void loop() {
-  // Synchronize time with NTP
-  timeClient.update();
+  // Ensure Wi-Fi is connected
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Wi-Fi lost, reconnecting...");
+    WiFi.disconnect();
+    setup_wifi();
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+    Serial.println("\nWi-Fi Reconnected!");
+  }
 
-  // Check if MQTT is connected, and reconnect if needed
+  // Ensure MQTT is connected
   if (!mqtt_client.connected()) {
-      connectToMQTT();
+    Serial.println("MQTT lost, reconnecting...");
+    connectToMQTT();
   }
   mqtt_client.loop();
 
-  // Get Accelerometer data
-  sensors_event_t event;
-  accel.getEvent(&event);
+  static int send = -1; // Initialize send to an impossible state (not 0 or 1)
+  int check = status(0); // Call status() and store the return value
 
-  // Get the X, Y, and Z acceleration values
-  float x = event.acceleration.x;
-  float y = event.acceleration.y;
-  float z = event.acceleration.z;
-
-  // Create a message to publish with X, Y, and Z values
-  String message = "X: " + String(x) + " Y: " + String(y) + " Z: " + String(z);
-
-  // Publish the message to the MQTT broker
-  mqtt_client.publish(mqtt_topic, message.c_str());
-
-  // Output to serial for debugging
-  Serial.print("X: "); Serial.print(x);
-  Serial.print(" Y: "); Serial.print(y);
-  Serial.print(" Z: "); Serial.println(z);
-
-  delay(1000);  // Delay 1 second before publishing again
+  if (send != check) { // Only send if the status changes
+    String message = String(check);
+    mqtt_client.publish(mqtt_topic, message.c_str());
+    Serial.println("Status changed");
+    send = check;  // Store the new status
+  }
+  delay(1000);  // Delay 1 second before checking again
 }
+
