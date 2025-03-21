@@ -4,7 +4,7 @@ from myapp.management.managers.timer_status_manager import Status
 class TimerManager:
     def __init__(self, status_manager):
         self.status_manager = status_manager
-        self.workingSecCount = 300
+        self.workingSecCount = 60
         self.restSecCount = 30
         self.snoozeSecCount = 30
         self.currentWorkingSecCount = self.workingSecCount
@@ -27,17 +27,17 @@ class TimerManager:
         self.tick()
 
     def workingCountdown(self):
-        if self.currentWorkingSecCount == 0:
+        if self.currentWorkingSecCount <= 0:
             self.currentWorkingSecCount = self.workingSecCount
         while self.currentWorkingSecCount > 0:
             if self.status_manager.get_status() == Status.PAUSED.name:
-                break
+                return
             time.sleep(1)
             self.currentWorkingSecCount -= 1
         if self.status_manager.get_status() == Status.WORK_IN_PROGRESS.name:
             self.status_manager.set_status(Status.REST.name)
-        else:
-            self.tick()
+
+        self.tick()
 
     def getWorkingSecCount(self):
         return self.currentWorkingSecCount

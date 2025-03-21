@@ -6,7 +6,6 @@ from django.core.management.base import BaseCommand
 from myapp.management.managers.timer_status_manager import TimerStatusManager, Status
 from myapp.management.managers.timer import TimerManager
 from myapp.management.managers.status_db_manager import StatusDBManager
-from myapp.management.managers.timer import TimerManager
 
 # MQTT Broker settings
 MQTT_BROKER = "e4995ca1.ala.eu-central-1.emqxsl.com"
