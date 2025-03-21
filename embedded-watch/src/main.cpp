@@ -145,7 +145,7 @@ void loop() {
 		}
 		mqtt_client.loop();
 		if(snooze_state == 1){
-			mqtt_client.publish(mqtt_topic, "SNZ");
+			mqtt_client.publish(mqtt_topic, "stop");
 		}
 	} else {
 		userio_loop();
