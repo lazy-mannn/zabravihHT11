@@ -8,10 +8,12 @@
 
 #include <secrets.h>
 #include <display.h>
+#include <userio.h>
+
 
 
 // NTP Server
-const long utcOffsetInSeconds = 3600;  // Set your UTC offset (e.g., 3600 for UTC+1)
+const long utcOffsetInSeconds = 7200;  // Set your UTC offset (e.g., 3600 for UTC+1)
 const char* ntpServer = "pool.ntp.org";  // NTP server (use the default pool or specify your own)
 WiFiUDP udp;
 NTPClient timeClient(udp, ntpServer, utcOffsetInSeconds);
@@ -92,9 +94,18 @@ void mqttCallback(char *topic, byte *payload, unsigned int length) {
     } else if (message == "0") {
         Serial.println("0");
     }
-}
+    if(message == "ww"){
+	ledRed_value = 1;
+	notifier_value = 1;
+	ledGreen_value = 0;
+    }
+    if(message == "stop"){
+	ledRed_value = 0;
+	notifier_value = 0;
+	ledGreen_value = 1;
+    }
 
-  
+}
 
 
 void setup() {
@@ -111,6 +122,10 @@ void setup() {
     // Synchronize time with NTP
     timeClient.update();
     display_setup();
+    ledGreen_value = 1;
+    ledRed_value = 1;
+    
+    userio_setup();
 }
 
 
@@ -129,10 +144,25 @@ void loop() {
 			connectToMQTT();
 		}
 		mqtt_client.loop();
-
+		if(snooze_state == 1){
+			mqtt_client.publish(mqtt_topic, "SNZ");
+		}
 	} else {
+		userio_loop();
 		// Run in between MQTT checks
+		lv_label_set_text(ui_Label2, timeClient.getFormattedTime().c_str());
 		display_loop();
+	}
+	// Ensure Wi-Fi is connected
+	if (WiFi.status() != WL_CONNECTED) {
+		Serial.println("Wi-Fi lost, reconnecting...");
+		WiFi.disconnect();
+		setup_wifi();
+		while (WiFi.status() != WL_CONNECTED) {
+		delay(500);
+		Serial.print(".");
+		}
+		Serial.println("\nWi-Fi Reconnected!");
 	}
 }
 
