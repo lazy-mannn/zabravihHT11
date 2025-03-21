@@ -141,8 +141,8 @@ int status(int check) {
   int x = event.acceleration.x;
   int y = event.acceleration.y;
 
-  Serial.print("\nX: "); Serial.print(x);
-  Serial.print(" Y: "); Serial.print(y);
+  // Serial.print("\nX: "); Serial.print(x);
+  // Serial.print(" Y: "); Serial.print(y);
 
   if ((x>-3 && x<3 && y>-3 && y<3) || (x>-3 && x<3 && (y>8 || y<-8)) || ((x>8 || x<-8) && y>-3 && y<3))
     check = 0;      //no movement
@@ -176,10 +176,22 @@ void setup() {
 }
 
 void loop() {
+  // Ensure Wi-Fi is connected
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("Wi-Fi lost, reconnecting...");
+    WiFi.disconnect();
+    setup_wifi();
+    while (WiFi.status() != WL_CONNECTED) {
+      delay(500);
+      Serial.print(".");
+    }
+    Serial.println("\nWi-Fi Reconnected!");
+  }
 
-  // Check if MQTT is connected, and reconnect if needed
+  // Ensure MQTT is connected
   if (!mqtt_client.connected()) {
-      connectToMQTT();
+    Serial.println("MQTT lost, reconnecting...");
+    connectToMQTT();
   }
   mqtt_client.loop();
 
