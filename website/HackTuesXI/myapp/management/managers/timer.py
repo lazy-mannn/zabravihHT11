@@ -31,6 +31,7 @@ class TimerManager:
             self.currentWorkingSecCount = self.workingSecCount
         while self.currentWorkingSecCount > 0:
             if self.status_manager.get_status() == Status.PAUSED.name:
+                self.tick()
                 return
             time.sleep(1)
             self.currentWorkingSecCount -= 1

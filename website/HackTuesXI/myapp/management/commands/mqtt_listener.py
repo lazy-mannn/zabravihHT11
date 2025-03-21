@@ -3,7 +3,7 @@ import ssl
 import threading
 import time
 from django.core.management.base import BaseCommand
-from myapp.management.managers.timer_status_manager import TimerStatusManager, Status
+from myapp.management.managers.timer_status_manager import Status
 from myapp.management.managers.timer import TimerManager
 from myapp.management.managers.status_db_manager import StatusDBManager
 
@@ -43,7 +43,6 @@ def on_message(client, userdata, msg):
         elif status == "SNZ":
             print("Snooze activated. Pausing work timer.")
             status_manager.set_status(Status.PAUSED.name)
-            timer_manager.tick()
             client.publish(MQTT_TOPIC, "ww")
 
     except Exception as e:
