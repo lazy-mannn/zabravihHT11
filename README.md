@@ -1,4 +1,4 @@
-# Attention Span Tracker
+# DoroWatch
 
 A project using Django, EMQX MQTT, and ESP32 to build a Pomodoro-inspired attention management tool.
 

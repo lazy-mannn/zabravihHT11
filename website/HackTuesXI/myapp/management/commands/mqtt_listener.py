@@ -1,10 +1,12 @@
 import paho.mqtt.client as mqtt
 import ssl
-import json
+import threading
+import time
 from django.core.management.base import BaseCommand
 from myapp.management.managers.timer_status_manager import TimerStatusManager, Status
-from myapp.management.managers.timer import TimerManager  
+from myapp.management.managers.timer import TimerManager
 
+# MQTT Broker settings
 MQTT_BROKER = "e4995ca1.ala.eu-central-1.emqxsl.com"
 MQTT_PORT = 8883
 MQTT_TOPIC = "status"
@@ -14,7 +16,7 @@ MQTT_PASSWORD = "django"
 MQTT_CA_CERT = "myapp/certs/emqxsl-ca.crt"
 
 status_manager = TimerStatusManager()
-timer_manager = TimerManager()
+timer_manager = TimerManager(status_manager)
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
@@ -47,6 +49,11 @@ def on_message(client, userdata, msg):
     except Exception as e:
         print(f"Error processing message: {e}")
 
+def timer_loop():
+    while True:
+        timer_manager.tick()
+        time.sleep(1)
+
 class Command(BaseCommand):
     help = "Start MQTT client to listen for ESP32 status"
 
@@ -56,6 +63,9 @@ class Command(BaseCommand):
         client.tls_set(ca_certs=MQTT_CA_CERT, cert_reqs=ssl.CERT_REQUIRED)
         client.on_connect = on_connect
         client.on_message = on_message
+
+        # Start the timer loop in a separate thread
+        threading.Thread(target=timer_loop, daemon=True).start()
 
         try:
             client.connect(MQTT_BROKER, MQTT_PORT, 60)

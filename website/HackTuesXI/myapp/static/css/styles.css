@@ -1,65 +1,42 @@
-/* Apply basic box-sizing rules */
-* {
-    box-sizing: border-box;
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f8f9fa;
     margin: 0;
-    padding: 0;
-}
-/* Center the content vertically and horizontally */
-body, html {
-    text-align: center;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f9; /* Light background for the page */
-}
-/* Container for the timer and button */
-#container {
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    /* Add a slight transition effect */
-    transition: all 0.3s ease;
-}
-/* Timer Text */
-#timer {
-    font-size: 72px; /* Large size for the countdown timer */
     color: #333;
-    font-weight: bold;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    color: #ffcc66;
+    text-align: center;
 }
-/* Button Styling */
-button {
-    background-color: #4CAF50; /* Green color for the button */
+
+header {
+    background: #111;
     color: white;
-    font-size: 18px;
-    padding: 15px 30px;
+    padding: 1rem;
+}
+
+.card {
+    margin-top: 10vh;
+    display: inline-block;
+    padding: 2rem;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#timer {
+    font-size: 4rem;
+    margin: 1rem 0;
+}
+
+button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
     border: none;
     border-radius: 5px;
+    background: #007bff;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background 0.3s ease;
 }
-/* Button hover effect */
+
 button:hover {
-    background-color: #45a049; /* Darker green */
-    transform: scale(1.1); /* Slight zoom effect */
-}
-/* Timer container and button responsiveness */
-@media screen and (max-width: 600px) {
-    .container {
-        width: 80%; /* Make the container smaller on mobile devices */
-    }
-    #timer {
-        font-size: 60px; /* Adjust font size for smaller screens */
-    }
-    button {
-        padding: 12px 24px; /* Adjust button size for small screens */
-        font-size: 16px;
-    }
+    background: #0056b3;
 }
