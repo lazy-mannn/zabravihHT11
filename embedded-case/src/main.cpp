@@ -13,8 +13,8 @@
 // MQTT Broker Configuration
 const char *mqtt_broker = "e4995ca1.ala.eu-central-1.emqxsl.com";  
 const char *mqtt_topic = "status";     
-const char *mqtt_username = "esp32";  
-const char *mqtt_password = "esp32";  
+const char *mqtt_username = "iot-case-1";  
+const char *mqtt_password = "iot-case-1";  
 const int mqtt_port = 8883;  
 
 // Replace with your own certificate (as string)
