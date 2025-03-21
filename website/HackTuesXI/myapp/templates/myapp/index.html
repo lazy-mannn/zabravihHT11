@@ -1,0 +1,16 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block title %}Session{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 id="status-cont">Status: <span id="session-status">Loading...</span></h2>
+    <h1 id="timer">--:--</h1>
+    <button id="start-btn" onclick="startWork()">Start Work</button>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock %}

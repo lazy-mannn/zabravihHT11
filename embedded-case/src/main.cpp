@@ -15,6 +15,7 @@ const char *mqtt_broker = "e4995ca1.ala.eu-central-1.emqxsl.com";
 const char *mqtt_topic = "status";     
 const char *mqtt_username = "iot-case-1";  
 const char *mqtt_password = "iot-case-1";  
+
 const int mqtt_port = 8883;  
 
 // Replace with your own certificate (as string)
@@ -100,6 +101,7 @@ void connectToMQTT() {
       Serial.println("Connected to MQTT broker!");
       mqtt_client.subscribe(mqtt_topic);
       mqtt_client.publish(mqtt_topic, "Connected");
+
   } else {
       Serial.print("Failed to connect, MQTT error code: ");
       Serial.println(mqtt_client.state());  // Shows the connection failure reason
@@ -133,6 +135,7 @@ void displaySensorDetails() {
     Serial.print("Resolution:   "); Serial.println(sensor.resolution);
     Serial.println("------------------------------------");
 }
+
 
 int status(int check) {
   sensors_event_t event;
@@ -206,3 +209,4 @@ void loop() {
   }
   delay(1000);  // Delay 1 second before checking again
 }
+
