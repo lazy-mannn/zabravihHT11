@@ -5,6 +5,8 @@ import time
 from django.core.management.base import BaseCommand
 from myapp.management.managers.timer_status_manager import TimerStatusManager, Status
 from myapp.management.managers.timer import TimerManager
+from myapp.management.managers.status_db_manager import StatusDBManager
+from myapp.management.managers.timer import TimerManager
 
 # MQTT Broker settings
 MQTT_BROKER = "e4995ca1.ala.eu-central-1.emqxsl.com"
@@ -15,7 +17,7 @@ MQTT_USERNAME = "django"
 MQTT_PASSWORD = "django"
 MQTT_CA_CERT = "myapp/certs/emqxsl-ca.crt"
 
-status_manager = TimerStatusManager()
+status_manager = StatusDBManager()
 timer_manager = TimerManager(status_manager)
 
 def on_connect(client, userdata, flags, rc):
@@ -31,7 +33,7 @@ def on_message(client, userdata, msg):
         print(f"Received status: {status}")
 
         if status == "1":
-            if status_manager.get_status() == Status.WORK_IN_PROGRESS:
+            if status_manager.get_status() == Status.WORK_IN_PROGRESS.name:
                 print("Work warning: User moved phone during work session!")
                 client.publish(MQTT_TOPIC, "ww")
 
@@ -41,9 +43,8 @@ def on_message(client, userdata, msg):
 
         elif status == "SNZ":
             print("Snooze activated. Pausing work timer.")
-            status_manager.set_status(Status.PAUSED)
-            timer_manager.snoozeCountdown()
-            status_manager.set_status(Status.WORK_IN_PROGRESS)
+            status_manager.set_status(Status.PAUSED.name)
+            timer_manager.tick()
             client.publish(MQTT_TOPIC, "ww")
 
     except Exception as e:

@@ -37,3 +37,4 @@ class TimerStatusManager:
         manager = TimerStatusManager()
         manager.set_status(status)
         return manager
+    
