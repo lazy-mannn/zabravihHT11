@@ -66,6 +66,7 @@ void connectToMQTT() {
       Serial.println("Connected to MQTT broker!");
       mqtt_client.subscribe(mqtt_topic);
       mqtt_client.publish(mqtt_topic, "Connected");
+
   } else {
       Serial.print("Failed to connect, MQTT error code: ");
       Serial.println(mqtt_client.state());  // Shows the connection failure reason
@@ -99,6 +100,7 @@ void displaySensorDetails() {
     Serial.print("Resolution:   "); Serial.println(sensor.resolution);
     Serial.println("------------------------------------");
 }
+
 
 int status(int check) {
   sensors_event_t event;
@@ -176,3 +178,4 @@ void loop() {
   }
   delay(500);  // Delay 1 second before checking again
 }
+
